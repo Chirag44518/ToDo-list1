@@ -67,7 +67,9 @@ app.get("/", function(req, res) {
 });
 
 app.get("/:customListName", function(req, res){
+  if (req.params.customListName === "favicon.ico") return;
   const customListName = _.capitalize(req.params.customListName);
+
 
   List.findOne({name: customListName}, function(err, foundList){
     if (!err){
