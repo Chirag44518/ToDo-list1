@@ -4,6 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const _ = require("lodash");
+require('dotenv').config();
 
 const app = express();
 
@@ -12,7 +13,9 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-mongoose.connect("mongodb+srv://admin_chirag:Test123@cluster0.9kkfz.mongodb.net/todolistDB", {
+const url=process.env.ATLAS_URL;
+
+mongoose.connect(url, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
